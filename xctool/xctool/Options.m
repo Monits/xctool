@@ -166,6 +166,10 @@
                      description:@"simulator launch timeout in seconds (default is 30 seconds)"
                        paramName:@"TIMEOUT"
                            mapTo:@selector(setLaunchTimeout:)],
+    [Action actionOptionWithName:@"dryRun"
+                         aliases:nil
+                     description:@"just print actions, don't actually run anything"
+                         setFlag:@selector(setDryRun:)],
     [Action actionOptionWithMatcher:^(NSString *argument){
       // Anything that looks like KEY=VALUE should get passed to xcodebuild
       // as a command-line build setting.
@@ -718,6 +722,10 @@
   } else {
     NSLog(@"Should have either a workspace or a project.");
     abort();
+  }
+
+  if (_dryRun) {
+    buildArgs = [buildArgs arrayByAddingObject:@"-dry-run"];
   }
 
   if (_derivedDataPath) {

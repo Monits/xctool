@@ -47,6 +47,7 @@
 @property (nonatomic, copy) NSString *derivedDataPath;
 @property (nonatomic, copy) NSArray *findTargetExcludePaths;
 @property (nonatomic, copy) NSString *launchTimeout;
+@property (nonatomic, assign) BOOL dryRun;
 
 @property (nonatomic, assign) BOOL showBuildSettings;
 @property (nonatomic, assign) BOOL showTasks;
